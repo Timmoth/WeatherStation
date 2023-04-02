@@ -17,9 +17,15 @@ module.exports.reading = async (event, context, callback) => {
 
   const dataPoint = new Point('weather')
     .tag('uid', body['uid'])
-    .timestamp(body['timestamp'])
-
-
+    .floatField('temperature', body['readings']['temperature'])
+    .floatField('humidity', body['readings']['humidity'])
+    .floatField('pressure', body['readings']['pressure'])
+    .floatField('luminance', body['readings']['luminance'])
+    .floatField('rain', body['readings']['rain'])
+    .floatField('rain_per_second', body['readings']['rain_per_second'])
+    .floatField('wind_direction', body['readings']['wind_direction'])
+    .floatField('wind_speed', body['readings']['wind_speed'])
+    .floatField('voltage', body['readings']['voltage'])
 
   //write data point
   await writeApi.writePoint(dataPoint)
