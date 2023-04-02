@@ -14,11 +14,10 @@ module.exports.reading = async (event, context, callback) => {
 
   //create InfluxDB api client with URL and token, then create Write API for the specific org and bucket
   const writeApi = await new InfluxDB({ url, token }).getWriteApi(org, bucket);
-  const unixTimeZero = Date.parse(body['timestamp']);
-
+  var date = new Date(body['timestamp']);
   const dataPoint = new Point('weather')
     .tag('uid', body['uid'])
-    .timestamp(unixTimeZero)
+    .timestamp(date)
     .floatField('temperature', body['readings']['temperature'])
     .floatField('humidity', body['readings']['humidity'])
     .floatField('pressure', body['readings']['pressure'])
