@@ -5,7 +5,7 @@
 # uses to deploy your code to your provider of choice
 
 # The `service` block is the name of the service
-service: weather
+service: weatherstation
 
 frameworkVersion: '3'
 
@@ -15,10 +15,9 @@ provider:
   runtime: nodejs12.x
   region: eu-west-1
 
-
 # The `functions` block defines what code to deploy
 functions:
-  power:
+  helloWorld:
     handler: handler.reading
     # The `events` block defines how to trigger the handler.helloWorld code
     events:
