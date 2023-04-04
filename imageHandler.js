@@ -13,7 +13,7 @@ module.exports.image = (event, context, callback) => {
         body: JSON.stringify({
           message: 'ok'
         }),
-        isBase64Encoded: true
+        isBase64Encoded: false
       };
       callback(undefined, response_success)
     });
