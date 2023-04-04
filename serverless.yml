@@ -19,9 +19,13 @@ provider:
 functions:
   helloWorld:
     handler: handler.reading
-    # The `events` block defines how to trigger the handler.helloWorld code
     events:
       - http:
           path: reading
           method: post
-          cors: true
+  image:
+    handler: imageHandler.image
+    events:
+      - http:
+          path: image
+          method: get

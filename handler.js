@@ -44,15 +44,3 @@ module.exports.reading = async (event, context, callback) => {
 
   callback(null, response);
 };
-
-
-module.exports.image = async (event, context, callback) => {
-
-  //send back response to the client
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify('Write successful'),
-  };
-
-  callback(null, response);
-};
