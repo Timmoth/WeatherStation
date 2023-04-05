@@ -5,7 +5,7 @@
 # uses to deploy your code to your provider of choice
 
 # The `service` block is the name of the service
-service: weatherstation
+service: weatherstation-readings
 
 frameworkVersion: '3'
 
@@ -15,21 +15,10 @@ provider:
   runtime: nodejs12.x
   region: eu-west-1
 
-package:
-    include:
-        - fonts/**
-
-# The `functions` block defines what code to deploy
 functions:
-  helloWorld:
-    handler: handler.reading
+  readings:
+    handler: readingsHandler.readings
     events:
       - http:
-          path: reading
+          path: readings
           method: post
-  image:
-    handler: imageHandler.image
-    events:
-      - http:
-          path: image.png
-          method: get

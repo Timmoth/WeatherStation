@@ -7,7 +7,7 @@ const bucket = process.env.bucket
 const token = process.env.token;
 const url = process.env.url
 
-module.exports.reading = async (event, context, callback) => {
+module.exports.readings = async (event, context, callback) => {
 
   //parse the expected JSON from the body of the POST request
   var body = JSON.parse(event.body)
@@ -38,12 +38,7 @@ module.exports.reading = async (event, context, callback) => {
 
   //send back response to the client
   const response = {
-    headers: {
-      'Content-Type': 'application/octet-stream',
-    },
     statusCode: 200,
-    isBase64Encoded: true,
-    body: "".toString('base64'),
   };
 
   callback(null, response);

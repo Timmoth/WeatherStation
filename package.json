@@ -1,24 +1,5 @@
 {
-  "name": "weatherstation",
-  "version": "1.0.0",
-  "description": "Hobby project using Pimoroni Weather Station",
-  "main": "handler.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Timmoth/WeatherStation.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Timmoth/WeatherStation/issues"
-  },
-  "homepage": "https://github.com/Timmoth/WeatherStation#readme",
-  "dependencies": {
-    "@influxdata/influxdb-client": "^1.33.2",
-    "pureimage": "^0.3.17"
+  "devDependencies": {
+    "@serverless/compose": "^1.3.0"
   }
 }

@@ -1,0 +1,32 @@
+# Welcome to serverless. Read the docs
+# https://serverless.com/framework/docs/
+
+# Serverless.yml is the configuration the CLI
+# uses to deploy your code to your provider of choice
+
+# The `service` block is the name of the service
+service: weatherstation-image
+
+frameworkVersion: '3'
+
+# The `provider` block defines where your service will be deployed
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-west-1
+  apiGateway:
+    binaryMediaTypes:
+      - '*/*'
+
+package:
+    include:
+        - fonts/**
+
+# The `functions` block defines what code to deploy
+functions:
+  image:
+    handler: imageHandler.image
+    events:
+      - http:
+          path: image.png
+          method: get
