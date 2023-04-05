@@ -38,8 +38,12 @@ module.exports.reading = async (event, context, callback) => {
 
   //send back response to the client
   const response = {
+    headers: {
+      'Content-Type': 'application/octet-stream',
+    },
     statusCode: 200,
-    body: JSON.stringify('Write successful'),
+    isBase64Encoded: true,
+    body: "".toString('base64'),
   };
 
   callback(null, response);

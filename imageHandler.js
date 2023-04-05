@@ -47,7 +47,8 @@ from(bucket:"${bucket}")\
   callback(undefined, {
     statusCode: 200,
     headers: {
-      "content-type": "image/png",
+      'Content-Type': 'application/octet-stream',
+      "Cache-Control": "no-cache"
     },
     body: buf.toString('base64'),
     isBase64Encoded: true

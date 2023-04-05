@@ -14,7 +14,7 @@ provider:
   name: aws
   runtime: nodejs12.x
   region: eu-west-1
-  
+
 package:
     include:
         - fonts/**
@@ -31,5 +31,5 @@ functions:
     handler: imageHandler.image
     events:
       - http:
-          path: image
+          path: image.png
           method: get
