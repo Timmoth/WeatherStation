@@ -1,6 +1,7 @@
 'use strict';
 var PImage = require('pureimage');
 var stream = require('stream');
+const { DateTime } = require("luxon");
 
 const { InfluxDB } = require('@influxdata/influxdb-client')
 //grab environment variables
@@ -16,9 +17,8 @@ module.exports.image = async (event, context, callback) => {
 
   const fluxQuery = `\
 from(bucket:"${bucket}")\
-|> range(start: -3h)\
+|> range(start: -2h)\
 |> filter(fn: (r) => r._measurement == "weather" and r._field == "temperature")\
-|> last()
 `;
 
   var fontRecord = PImage.registerFont('/var/task/fonts/SourceSansPro-Regular.ttf', 'Source Sans Pro');
@@ -29,12 +29,34 @@ from(bucket:"${bucket}")\
   ctx.clearRect(0, 0, img.width, img.height);
 
   ctx.fillStyle = 'black';
-  ctx.font = "20pt 'Source Sans Pro'";
+  ctx.font = "25pt 'Source Sans Pro'";
 
-  let i = 1;
+  let cX = 100;
+  let cY = 10;
+
+  let allReadings = [];
   for await (const { values, tableMeta } of queryApi.iterateRows(fluxQuery)) {
     const o = tableMeta.toObject(values)
-    ctx.fillText(`${o._value}°C`, 20, 20 * i++);
+    allReadings.push([DateTime.fromISO(o._time), parseInt(o._value)]);
+  }
+
+  if (allReadings.length > 0) {
+    allReadings.sort((a, b) => {
+      var [dateTime1, _] = a;
+      var [dateTime2, _] = b;
+
+      return dateTime2.toMillis() - dateTime1.toMillis()
+    })
+
+    var [dateTime, temperatureReading] = allReadings[0]
+
+    dateTime = dateTime.setZone('Europe/London');
+
+    let timeString = dateTime.toLocaleString(DateTime.DATETIME_MED)
+
+    let i = 1;
+    ctx.fillText(timeString, 20, 30 * i++);
+    ctx.fillText(`${temperatureReading}°C`, 20, 30 * i++);
   }
 
   const passThroughStream = new stream.PassThrough();
