@@ -20,6 +20,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
+      working-directory: ./readings
+    - run: npm ci
+      working-directory: ./image
     - name: serverless deploy
       uses: serverless/github-action@v3.1
       with:
