@@ -4,7 +4,6 @@ var stream = require('stream');
 const { DateTime } = require("luxon");
 
 const { InfluxDB } = require('@influxdata/influxdb-client');
-const { Line } = require('pureimage/types/line');
 //grab environment variables
 const org = process.env.org
 const bucket = process.env.bucket
