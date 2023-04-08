@@ -17,7 +17,7 @@ provider:
 
 functions:
   readings:
-    handler: built/readingsHandler.readings
+    handler: build/readingsHandler.readings
     events:
       - http:
           path: readings

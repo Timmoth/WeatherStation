@@ -7,7 +7,7 @@
 # The `service` block is the name of the service
 service: weatherstation-image
 
-frameworkVersion: '3'
+frameworkVersion: "3"
 
 # The `provider` block defines where your service will be deployed
 provider:
@@ -16,16 +16,16 @@ provider:
   region: eu-west-1
   apiGateway:
     binaryMediaTypes:
-      - '*/*'
+      - "*/*"
 
 package:
-    include:
-        - fonts/**
+  include:
+    - fonts/**
 
 # The `functions` block defines what code to deploy
 functions:
   image:
-    handler: imageHandler.image
+    handler: build/imageHandler.image
     events:
       - http:
           path: image.png

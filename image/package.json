@@ -4,14 +4,21 @@
   "description": "",
   "main": "imageHandler.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@influxdata/influxdb-client": "^1.33.2",
+    "aws-sdk": "^2.1353.0",
     "luxon": "^3.3.0",
-    "pureimage": "^0.3.17"
+    "pureimage": "^0.3.17",
+    "typescript": "^5.0.4"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.114",
+    "@types/luxon": "^3.3.0",
+    "@types/node": "^18.15.11"
   }
 }

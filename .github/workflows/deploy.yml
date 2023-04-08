@@ -25,6 +25,8 @@ jobs:
         working-directory: ./readings
       - run: npm ci
         working-directory: ./image
+      - run: npm run compile
+        working-directory: ./image
       - name: serverless deploy
         uses: serverless/github-action@v3.1
         with:

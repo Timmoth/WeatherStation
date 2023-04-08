@@ -1,13 +1,14 @@
 "use strict";
 //import InfluxDB client, this is possible thanks to the layer we created
 const { InfluxDB, Point } = require("@influxdata/influxdb-client");
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
+
 //grab environment variables
 const org = process.env.org;
 const bucket = process.env.bucket;
 const token = process.env.token;
 const url = process.env.url;
 
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 export const readings = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
