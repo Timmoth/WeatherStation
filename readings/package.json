@@ -11,9 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "@influxdata/influxdb-client": "^1.33.2",
-    "@types/aws-lambda": "^8.10.114",
-    "@types/node": "^18.15.11",
     "aws-sdk": "^2.1353.0",
     "typescript": "^5.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@types/aws-lambda": "^8.10.114"
   }
 }
