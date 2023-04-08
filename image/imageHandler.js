@@ -3,7 +3,8 @@ var PImage = require('pureimage');
 var stream = require('stream');
 const { DateTime } = require("luxon");
 
-const { InfluxDB } = require('@influxdata/influxdb-client')
+const { InfluxDB } = require('@influxdata/influxdb-client');
+const { Line } = require('pureimage/types/line');
 //grab environment variables
 const org = process.env.org
 const bucket = process.env.bucket
@@ -21,18 +22,32 @@ from(bucket:"${bucket}")\
 |> filter(fn: (r) => r._measurement == "weather" and r._field == "temperature")\
 `;
 
-  var fontRecord = PImage.registerFont('/var/task/fonts/SourceSansPro-Regular.ttf', 'Source Sans Pro');
+  var fontRecord = PImage.registerFont('/var/task/fonts/Consolas.ttf', 'Consolas');
   fontRecord.loadSync();
 
-  var img = PImage.make(400, 200);
+  let width = 400;
+  let height = 200;
+  var img = PImage.make(width, height);
   var ctx = img.getContext('2d');
-  ctx.clearRect(0, 0, img.width, img.height);
+  ctx.fillStyle = 'white';
+  ctx.fillRect(0, 0, img.width, img.height);
 
   ctx.fillStyle = 'black';
-  ctx.font = "25pt 'Source Sans Pro'";
+  ctx.strokeStyle = 'black';
+  ctx.font = "20pt 'Consolas'";
 
   let cX = 100;
   let cY = 10;
+  let row = 1;
+  let headerText = "Latest weather station readings"
+  // let textWidth = ctx.measureText(headerText);
+  ctx.fillText(headerText, 20, 30 * row);
+  //  ctx.beginPath();
+  // ctx.moveTo(20, 40);
+  // ctx.lineTo(width - 20, 40);
+  // ctx.stroke();
+  row++;
+
 
   let allReadings = [];
   for await (const { values, tableMeta } of queryApi.iterateRows(fluxQuery)) {
@@ -54,9 +69,11 @@ from(bucket:"${bucket}")\
 
     let timeString = dateTime.toLocaleString(DateTime.DATETIME_MED)
 
-    let i = 1;
-    ctx.fillText(timeString, 20, 30 * i++);
-    ctx.fillText(`${temperatureReading}°C`, 20, 30 * i++);
+    ctx.fillText(timeString, 20, 30 * row);
+    row++;
+
+    ctx.fillText(`${temperatureReading}°C`, 20, 30 * row);
+    row++;
   }
 
   const passThroughStream = new stream.PassThrough();

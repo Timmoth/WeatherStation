@@ -7,7 +7,7 @@
 # The `service` block is the name of the service
 service: weatherstation-readings
 
-frameworkVersion: '3'
+frameworkVersion: "3"
 
 # The `provider` block defines where your service will be deployed
 provider:
@@ -17,7 +17,7 @@ provider:
 
 functions:
   readings:
-    handler: readingsHandler.readings
+    handler: built/readingsHandler.readings
     events:
       - http:
           path: readings
