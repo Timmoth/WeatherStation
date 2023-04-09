@@ -17,7 +17,15 @@ provider:
   apiGateway:
     binaryMediaTypes:
       - "*/*"
-
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "ssm:*"
+        - "ssm:GetParameter"
+        - "ssm:GetParameters"
+        - "ssm:GetParametersByPath"
+      Resource:
+        - "*"
 package:
   include:
     - fonts/**
@@ -31,7 +39,7 @@ functions:
           path: image.png
           method: get
     environment:
-      - bucket: weather
-      - org: WeatherStation
-      - token: ${ssm:/weatherstation-influxdb-token}
-      - url: https://eu-central-1-1.aws.cloud2.influxdata.com
+      bucket: weather
+      org: WeatherStation
+      token: ${ssm:/weatherstation-influxdb-token}
+      url: https://eu-central-1-1.aws.cloud2.influxdata.com
