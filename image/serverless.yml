@@ -30,6 +30,9 @@ package:
   include:
     - fonts/**
 
+plugins:
+  - serverless-offline
+
 # The `functions` block defines what code to deploy
 functions:
   image:
