@@ -355,3 +355,8 @@ jspm_packages
 
 # Serverless directories
 .serverless
+
+# build directories
+.build
+image/build
+readings/build
