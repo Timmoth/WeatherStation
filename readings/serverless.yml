@@ -14,11 +14,6 @@ provider:
   name: aws
   runtime: nodejs12.x
   region: eu-west-1
-  environment:
-    bucket: "weather"
-    org: "WeatherStation"
-    token: ${ssm:/weatherstation-influxdb-token}
-    url: "https://eu-central-1-1.aws.cloud2.influxdata.com"
 
 functions:
   readings:
@@ -27,3 +22,8 @@ functions:
       - http:
           path: readings
           method: post
+    environment:
+      bucket: weather
+      org: WeatherStation
+      token: ${ssm:/weatherstation-influxdb-token}
+      url: https://eu-central-1-1.aws.cloud2.influxdata.com
