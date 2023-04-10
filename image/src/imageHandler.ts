@@ -9,13 +9,15 @@ const { InfluxDB } = require("@influxdata/influxdb-client");
 //grab environment variables
 const org = process.env.org;
 const bucket = process.env.bucket;
-const token = process.env.token;
-const url = process.env.url;
+let token = process.env.token;
+let url = process.env.url;
 
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 export const image = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
+  console.log("running");
+
   //create InfluxDB api client with URL and token, then create Write API for the specific org and bucket
   const queryApi = await new InfluxDB({ url, token }).getQueryApi(org);
 
