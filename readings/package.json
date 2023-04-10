@@ -4,18 +4,21 @@
   "description": "",
   "main": "readingsHandler.js",
   "scripts": {
-    "compile": "tsc"
+    "compile": "tsc",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@influxdata/influxdb-client": "^1.33.2",
-    "aws-sdk": "^2.1353.0",
-    "typescript": "^5.0.4"
+    "aws-sdk": "^2.1353.0"
   },
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.114",
     "@types/node": "^18.15.11",
-    "@types/aws-lambda": "^8.10.114"
+    "serverless-offline": "^12.0.4",
+    "serverless-offline-ssm": "^6.2.0",
+    "typescript": "^5.0.4"
   }
 }

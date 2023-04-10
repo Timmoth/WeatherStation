@@ -14,6 +14,7 @@ provider:
   name: aws
   runtime: nodejs12.x
   region: eu-west-1
+  stage: ${opt:stage, 'dev'}
   iamRoleStatements:
     - Effect: "Allow"
       Action:
@@ -23,6 +24,18 @@ provider:
         - "ssm:GetParametersByPath"
       Resource:
         - "*"
+
+custom:
+  serverless-offline-ssm:
+    stages:
+      - local
+    ssm:
+      "/weatherstation-influxdb-token": "test-token"
+      "/weatherstation-influxdb-url": "http://influxDb:8086/"
+
+plugins:
+  - serverless-offline-ssm
+  - serverless-offline
 
 functions:
   readings:
@@ -35,4 +48,4 @@ functions:
       bucket: weather
       org: WeatherStation
       token: ${ssm:/weatherstation-influxdb-token}
-      url: https://eu-central-1-1.aws.cloud2.influxdata.com
+      url: ${ssm:/weatherstation-influxdb-url}

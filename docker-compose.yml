@@ -1,0 +1,25 @@
+version: '3'
+services:
+  readings:
+    build: 
+      context: ./image
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"
+  image:
+    build: 
+      context: ./readings
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+  influxDb:
+    image: influxdb:2.0
+    ports:
+      - "8086:8086"
+    environment: 
+       - DOCKER_INFLUXDB_INIT_MODE=setup
+       - DOCKER_INFLUXDB_INIT_USERNAME=my-user
+       - DOCKER_INFLUXDB_INIT_PASSWORD=my-password
+       - DOCKER_INFLUXDB_INIT_ORG=WeatherStation
+       - DOCKER_INFLUXDB_INIT_BUCKET=weather
+       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=test-token 
