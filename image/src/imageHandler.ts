@@ -28,7 +28,7 @@ from(bucket:"${bucket}")\
 `;
 
   var fontRecord = PImage.registerFont(
-    __dirname.concat("/fonts/Consolas.ttf"),
+    __dirname.concat("/../fonts/Consolas.ttf"),
     "Consolas"
   );
   fontRecord.loadSync();
